@@ -86,8 +86,7 @@ document.onkeypress = function (e) {
 	}
 	if (!edit) {
 		if (e.keyCode == 114) { // "r"
-			rtl = !rtl;
-			document.getElementById('content').className = rtl ? "rtl" : "";
+			$("body").toggleClass("rtl");
 		} else if (e.keyCode == 61) { // "+"
 			sendPacket(3, 1);
 		} else if (e.keyCode == 45) { // "-"
