@@ -5,10 +5,8 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 }
-body, html {
-	height: 100%;
-}
 body {
+	overflow: hidden;
 	width: 900px;
 	margin: auto;
 
@@ -25,14 +23,18 @@ body {
 #content {
 	padding: 800px 0;
 }
-#content::before {
-	display: block;
+#arrow {
 	border: 30px solid transparent;
 	border-left: 30px solid #FFF;
-	content: "";
-	margin-left: -50px;
+	margin-left: -500px;
 	position: fixed;
 	top: 300px;
+	left: 50%;
+}
+.rtl #arrow {
+	border-left: 30px solid transparent;
+	border-right: 30px solid #FFF;
+	margin-left: 440px;
 }
 .show {
 	display: block !important;
@@ -51,7 +53,7 @@ textarea {
 	margin-top: 100px;
 	display: block;
 }
-.rtl {
+.rtl #content {
 	-moz-transform: matrix(-1, 0, 0, 1, 0, 0);
 	-webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
 	-o-transform:matrix(-1, 0, 0, 1, 0, 0);

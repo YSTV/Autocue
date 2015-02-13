@@ -1,12 +1,11 @@
 var connection;
-var rtl = false;
 var edit = false;
 
 var time = 0;
 var time2 = 0;
 
 function connect() {
-	connection = new WebSocket('ws://ystv.co.uk:1234/autocue', ['soap', 'xmpp']);
+	connection = new WebSocket('ws://' + window.location.hostname + ':8486/autocue', ['soap', 'xmpp']);
 	connection.binaryType = "arraybuffer";
 	connection.onopen = onWSOpen;
 	connection.onerror = onWSError;
@@ -65,13 +64,13 @@ function sendPacket(a, b) {
 	connection.send(bytearray.buffer);
 }
 
-function str2ab(str) {
+function sendString(a, str) {
 	var bufView = new Uint8Array(str.length + 1);
-	bufView[0] = 4;
+	bufView[0] = a;
 	for (var i = 1, strLen = str.length; i <= strLen; i++) {
 		bufView[i] = str.charCodeAt(i - 1);
 	}
-	return bufView.buffer;
+	connection.send(bufView.buffer);
 }
 
 document.onkeypress = function (e) {
@@ -79,7 +78,7 @@ document.onkeypress = function (e) {
 
 	if (e.keyCode == 96) {
 		if (edit) {
-			connection.send(str2ab(document.getElementById('edit_txt').value));
+			sendString(4, document.getElementById('edit_txt').value);
 		}
 
 		edit = !edit;
@@ -99,16 +98,7 @@ document.onkeypress = function (e) {
 
 $(window).scroll(function () {
 	if (time < new Date().getTime()) {
-		str = (-$(window).scrollTop()).toString();
-
-		var bufView = new Uint8Array(str.length + 1);
-	        bufView[0] = 5;
-        	for (var i = 1, strLen = str.length; i <= strLen; i++) {
-                	bufView[i] = str.charCodeAt(i - 1);
-	        }
-
-		connection.send(bufView.buffer);
-
+		sendString(5, (-$(window).scrollTop()).toString());
 		time2 = new Date().getTime() + 1000;
 	}
 });
