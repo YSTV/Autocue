@@ -35,7 +35,6 @@ def web_socket_transfer_data(request):
                                 broadcast(str(1) + text)
                         elif (ord(line[0]) == 5):
                                 offset = int(line[1:])
-                                print offset
                                 broadcast(str(3) + str(offset))
                         else:
                                 for x in line:
