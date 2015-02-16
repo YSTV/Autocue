@@ -50,7 +50,9 @@ function onWSMessage(e) {
 			break;
 		case 3:
 			if (time2 < new Date().getTime()) {
-				$('html, body').stop(true, false).animate({scrollTop: -str}, 300, "linear");
+				window.scrollTo(0, -str);
+				// Animated scrolling, helps with latency, doesn't perform well on a pi
+				//$('html, body').stop(true, false).animate({scrollTop: -str}, 300, "linear");
 				time = new Date().getTime() + 1000;
 			}
 			break;
