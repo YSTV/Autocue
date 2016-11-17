@@ -37,8 +37,8 @@ Go to autocue.example.com and the autocue will start.
 
 Pressing certain keys while on the autocue webpage will perform certain actions:
 
-*`r` - Reverses the screen from left to right to right to left.
-*`up arrow` - scrolls upwards.
-*`down arrow` - scrolls downwards.
-*``` - Opens or closes the text editing window.
-*`shift + mouse movement` - scrolls the autocue up or down at a variable speed
+* `r` - Reverses the screen from left to right to right to left.
+* `up arrow` - scrolls upwards.
+* `down arrow` - scrolls downwards.
+* ` - Opens or closes the text editing window.
+* `shift + mouse movement` - scrolls the autocue up or down at a variable speed
