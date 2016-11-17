@@ -14,7 +14,7 @@ var start_y;
 var offset = 0;
 
 function connect() {
-	connection = new WebSocket('ws://' + window.location.hostname + ':8486/autocue', ['soap', 'xmpp']);
+	connection = new WebSocket('ws://' + window.location.hostname + '/autocue', ['soap', 'xmpp']);
 	connection.binaryType = "arraybuffer";
 	connection.onopen = onWSOpen;
 	connection.onerror = onWSError;
