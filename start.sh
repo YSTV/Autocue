@@ -1,1 +1,1 @@
-./pywebsocket/src/mod_pywebsocket/standalone.py -p 8486 -d handlers
+PYTHONPATH=./pywebsocket/src/ ./pywebsocket/src/mod_pywebsocket/standalone.py -p 8486 -d handlers/

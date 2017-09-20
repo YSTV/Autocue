@@ -34,7 +34,11 @@ def web_socket_transfer_data(request):
                                 text = line[1:]
                                 broadcast(str(1) + text)
                         elif (ord(line[0]) == 5):
-                                offset = int(line[1:])
+                                move_val = int(line[1:])
+                                if move_val > 100 or move_val < -100:
+                                    print("Silly value")
+                                    continue
+                                offset += int(line[1:])
                                 broadcast(str(3) + str(offset))
                         else:
                                 for x in line:
