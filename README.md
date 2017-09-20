@@ -45,3 +45,5 @@ Pressing certain keys while on the autocue webpage will perform certain actions:
 * `shift + mouse movement` - scrolls the autocue up or down at a variable speed
 * `+` - Makes text larger.
 * `-` - Makes text smaller.
+
+By using `?rtl=true` in the URL, it will open with right to left already enabled.
