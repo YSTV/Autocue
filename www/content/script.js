@@ -1,5 +1,6 @@
 var connection;
 var edit = false;
+var help = false;
 
 var time = 0;
 var time2 = 0;
@@ -24,11 +25,12 @@ function connect() {
 connect();
 
 function onWSOpen() {
-	
+
 };
 
 function onWSError(error) {
 	console.log('WebSocket Error ' + error);
+	status('WebSocket Error, maybe try <a href="/start/">starting the server</a>.');
 };
 
 function onWSClose() {
@@ -88,7 +90,6 @@ function sendString(a, str) {
 
 document.onkeypress = function (e) {
 	e = e || window.event;
-	
 	if (e.keyCode == 96) {
 		if (edit) {
 			sendString(4, document.getElementById('edit_txt').value);
@@ -111,10 +112,10 @@ document.onkeypress = function (e) {
 // Track move commands
 document.onkeydown = function (e) {
 	e = e || window.event;
-	
+
 	if (e.keyCode == 38) { // Up Arrow
 		if (!upinterval) {
-			upinterval = setInterval("sendString(5, '1')", 5);		
+			upinterval = setInterval("sendString(5, '1')", 5);
 		}
 	} else if (e.keyCode == 40) { // Down Arrow
 		if (!downinterval) {
@@ -140,6 +141,8 @@ document.onkeyup = function (e) {
 		clearInterval(moveinterval);
 		moveinterval = null;
 		start_y = null;
+	}	else if (e.keyCode == 27 && help) {
+		toggleHelp();
 	}
 };
 
@@ -156,3 +159,18 @@ function mouse_move() {
 document.onmousemove = function(e){
     cursorY = e.pageY - offset;
 }
+
+function status(msg) {
+	$("#status").html(msg);
+}
+
+// Help popup
+function toggleHelp() {
+	if (!help) {
+		$("#help_popup").fadeIn();
+	} else {
+		$("#help_popup").fadeOut();
+	}
+	help = !help;
+}
+
